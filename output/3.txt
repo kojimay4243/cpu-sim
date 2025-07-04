@@ -1,0 +1,427 @@
+ros2 run cpu-sim cpu_simulation_node
+CPU0,PC=0x0>   s acc 05
+        acc=0x05(5,5)    ix=0x00(0,0)   cf=0 vf=0 nf=0 zf=0
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
+CPU0,PC=0x0>     s ix 03
+        acc=0x05(5,5)    ix=0x03(3,3)   cf=0 vf=0 nf=0 zf=0
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
+CPU0,PC=0x0>     r src/cpu-sim/test/sample_program.txt
+CPU0,PC=0x0> c
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x000
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x000, Instruction=0x75
+DEBUG(Phase 1): PC incremented to 0x001.
+DEBUG(Phase 1): A_Field=0, B_Field=5. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0x75 (OP_PREFIX=0x70)
+DEBUG(Phase 2): Matched ST_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x5.
+DEBUG(Phase 2): AddrModeB=ABS_DATA.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=7, AddrModeB=4
+DEBUG: Instruction decoded as Type=7 (A_Field=0, B_Field=5, AddrModeB=4)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x05 (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=4 (B_Field=0x5).
+DEBUG(Phase 3): Fetched Abs Data 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Data 0x103: 0x00.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x05, OpB=0x00, Effective Address=0x103
+DEBUG: ALU operation skipped for this instruction type: 7
+DEBUG(Phase 5): Entering write_back_result for type 7.
+DEBUG(Phase 5): Stored 0x05 (from Reg A) to Memory address 0x103.
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 7. PC before update: 0x002.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 7. Final PC: 0x002.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x002
+DEBUG: --- Instruction cycle completed. Final PC: 0x002 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x002
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x002, Instruction=0xc0
+DEBUG(Phase 1): PC incremented to 0x003.
+DEBUG(Phase 1): A_Field=0, B_Field=0. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xc0 (OP_PREFIX=0xc0)
+DEBUG(Phase 2): Matched EOR_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x0.
+DEBUG(Phase 2): AddrModeB=REG_ACC.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=15, AddrModeB=0
+DEBUG: Instruction decoded as Type=15 (A_Field=0, B_Field=0, AddrModeB=0)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x05 (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=0 (B_Field=0x0).
+DEBUG(Phase 3): OpB from ACC: 0x05.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x05, OpB=0x05, Effective Address=0x000
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 15.
+DEBUG(Phase 4): EOR: 0x05 ^ 0x05 = 0x00.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=0, VF=0, NF=0, ZF=1
+DEBUG(Phase 5): Entering write_back_result for type 15.
+DEBUG(Phase 5): Wrote ALU result 0x00 to Reg A (Type 15).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 15. PC before update: 0x003.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 15. Final PC: 0x003.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x003
+DEBUG: --- Instruction cycle completed. Final PC: 0x003 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x003
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x003, Instruction=0xb5
+DEBUG(Phase 1): PC incremented to 0x004.
+DEBUG(Phase 1): A_Field=0, B_Field=5. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xb5 (OP_PREFIX=0xb0)
+DEBUG(Phase 2): Matched ADD_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x5.
+DEBUG(Phase 2): AddrModeB=ABS_DATA.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=8, AddrModeB=4
+DEBUG: Instruction decoded as Type=8 (A_Field=0, B_Field=5, AddrModeB=4)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x00 (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=4 (B_Field=0x5).
+DEBUG(Phase 3): Fetched Abs Data 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Data 0x103: 0x05.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x00, OpB=0x05, Effective Address=0x103
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 8.
+DEBUG(Flags Update): Calculating flags for OpA=0x00, OpB=0x05, Result=0x05, IsSub=0
+DEBUG(Flags Update): ZF=0
+DEBUG(Flags Update): NF=0
+DEBUG(Flags Update): CF (Add)=0
+DEBUG(Flags Update): VF (Add)=0 (OpA_sign=0, OpB_sign=0, Result_sign=0)
+DEBUG(Flags Update): Final Flags: CF=0, VF=0, NF=0, ZF=0
+DEBUG(Phase 4): ADD: 0x00 + 0x05 = 0x05.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=0, VF=0, NF=0, ZF=0
+DEBUG(Phase 5): Entering write_back_result for type 8.
+DEBUG(Phase 5): Wrote ALU result 0x05 to Reg A (Type 8).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 8. PC before update: 0x005.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 8. Final PC: 0x005.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x005
+DEBUG: --- Instruction cycle completed. Final PC: 0x005 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x005
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x005, Instruction=0xaa
+DEBUG(Phase 1): PC incremented to 0x006.
+DEBUG(Phase 1): A_Field=1, B_Field=2. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xaa (OP_PREFIX=0xa0)
+DEBUG(Phase 2): Matched SUB_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x2.
+DEBUG(Phase 2): AddrModeB=IMMEDIATE.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=10, AddrModeB=2
+DEBUG: Instruction decoded as Type=10 (A_Field=1, B_Field=2, AddrModeB=2)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x03 (from IX).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=2 (B_Field=0x2).
+DEBUG(Phase 3): Fetched Immediate 2nd word: 0x01.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x03, OpB=0x01, Effective Address=0x000
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 10.
+DEBUG(Flags Update): Calculating flags for OpA=0x03, OpB=0x01, Result=0x02, IsSub=1
+DEBUG(Flags Update): ZF=0
+DEBUG(Flags Update): NF=0
+DEBUG(Flags Update): CF (Sub/Borrow)=1 (sum=0x2)
+DEBUG(Flags Update): VF (Sub)=0 (OpA_sign=0, NegB_sign=1, Result_sign=0)
+DEBUG(Flags Update): Final Flags: CF=1, VF=0, NF=0, ZF=0
+DEBUG(Phase 4): SUB: 0x03 - 0x01 = 0x02.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=1, VF=0, NF=0, ZF=0
+DEBUG(Phase 5): Entering write_back_result for type 10.
+DEBUG(Phase 5): Wrote ALU result 0x02 to Reg A (Type 10).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 10. PC before update: 0x007.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 10. Final PC: 0x007.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x007
+DEBUG: --- Instruction cycle completed. Final PC: 0x007 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x007
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x007, Instruction=0x31
+DEBUG(Phase 1): PC incremented to 0x008.
+DEBUG(Phase 1): A_Field=0, B_Field=1. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0x31 (OP_PREFIX=0x30)
+DEBUG(Phase 2): Matched BRANCH_OPCODE_PREFIX. Type=18.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x1.
+DEBUG(Phase 2): Setting AddrModeB=ABS_PROG for Branch/JAL instruction type 18.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=18, AddrModeB=3
+DEBUG: Instruction decoded as Type=18 (A_Field=0, B_Field=1, AddrModeB=3)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x05 (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=3 (B_Field=0x1).
+DEBUG(Phase 3): Fetched Abs Prog 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Prog 0x003: 0xb5.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x05, OpB=0xb5, Effective Address=0x003
+DEBUG: ALU operation skipped for this instruction type: 18
+DEBUG(Phase 5): Entering write_back_result for type 18.
+DEBUG(Phase 5): No specific write back for instruction type: 18.
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 18. PC before update: 0x009.
+DEBUG(Phase 6): Evaluating Branch Condition (0x3).
+DEBUG(Phase 6): BNZ (on Not Zero) condition: ZF=0 (is_taken=1) based on bc=0x03 (from 0x31 in sample).
+DEBUG(Phase 6): Branch taken to 0x003.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x003
+DEBUG: --- Instruction cycle completed. Final PC: 0x003 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x003
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x003, Instruction=0xb5
+DEBUG(Phase 1): PC incremented to 0x004.
+DEBUG(Phase 1): A_Field=0, B_Field=5. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xb5 (OP_PREFIX=0xb0)
+DEBUG(Phase 2): Matched ADD_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x5.
+DEBUG(Phase 2): AddrModeB=ABS_DATA.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=8, AddrModeB=4
+DEBUG: Instruction decoded as Type=8 (A_Field=0, B_Field=5, AddrModeB=4)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x05 (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=4 (B_Field=0x5).
+DEBUG(Phase 3): Fetched Abs Data 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Data 0x103: 0x05.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x05, OpB=0x05, Effective Address=0x103
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 8.
+DEBUG(Flags Update): Calculating flags for OpA=0x05, OpB=0x05, Result=0x0a, IsSub=0
+DEBUG(Flags Update): ZF=0
+DEBUG(Flags Update): NF=0
+DEBUG(Flags Update): CF (Add)=0
+DEBUG(Flags Update): VF (Add)=0 (OpA_sign=0, OpB_sign=0, Result_sign=0)
+DEBUG(Flags Update): Final Flags: CF=0, VF=0, NF=0, ZF=0
+DEBUG(Phase 4): ADD: 0x05 + 0x05 = 0x0a.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=0, VF=0, NF=0, ZF=0
+DEBUG(Phase 5): Entering write_back_result for type 8.
+DEBUG(Phase 5): Wrote ALU result 0x0a to Reg A (Type 8).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 8. PC before update: 0x005.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 8. Final PC: 0x005.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x005
+DEBUG: --- Instruction cycle completed. Final PC: 0x005 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x005
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x005, Instruction=0xaa
+DEBUG(Phase 1): PC incremented to 0x006.
+DEBUG(Phase 1): A_Field=1, B_Field=2. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xaa (OP_PREFIX=0xa0)
+DEBUG(Phase 2): Matched SUB_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x2.
+DEBUG(Phase 2): AddrModeB=IMMEDIATE.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=10, AddrModeB=2
+DEBUG: Instruction decoded as Type=10 (A_Field=1, B_Field=2, AddrModeB=2)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x02 (from IX).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=2 (B_Field=0x2).
+DEBUG(Phase 3): Fetched Immediate 2nd word: 0x01.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x02, OpB=0x01, Effective Address=0x000
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 10.
+DEBUG(Flags Update): Calculating flags for OpA=0x02, OpB=0x01, Result=0x01, IsSub=1
+DEBUG(Flags Update): ZF=0
+DEBUG(Flags Update): NF=0
+DEBUG(Flags Update): CF (Sub/Borrow)=1 (sum=0x1)
+DEBUG(Flags Update): VF (Sub)=0 (OpA_sign=0, NegB_sign=1, Result_sign=0)
+DEBUG(Flags Update): Final Flags: CF=1, VF=0, NF=0, ZF=0
+DEBUG(Phase 4): SUB: 0x02 - 0x01 = 0x01.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=1, VF=0, NF=0, ZF=0
+DEBUG(Phase 5): Entering write_back_result for type 10.
+DEBUG(Phase 5): Wrote ALU result 0x01 to Reg A (Type 10).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 10. PC before update: 0x007.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 10. Final PC: 0x007.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x007
+DEBUG: --- Instruction cycle completed. Final PC: 0x007 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x007
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x007, Instruction=0x31
+DEBUG(Phase 1): PC incremented to 0x008.
+DEBUG(Phase 1): A_Field=0, B_Field=1. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0x31 (OP_PREFIX=0x30)
+DEBUG(Phase 2): Matched BRANCH_OPCODE_PREFIX. Type=18.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x1.
+DEBUG(Phase 2): Setting AddrModeB=ABS_PROG for Branch/JAL instruction type 18.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=18, AddrModeB=3
+DEBUG: Instruction decoded as Type=18 (A_Field=0, B_Field=1, AddrModeB=3)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x0a (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=3 (B_Field=0x1).
+DEBUG(Phase 3): Fetched Abs Prog 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Prog 0x003: 0xb5.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x0a, OpB=0xb5, Effective Address=0x003
+DEBUG: ALU operation skipped for this instruction type: 18
+DEBUG(Phase 5): Entering write_back_result for type 18.
+DEBUG(Phase 5): No specific write back for instruction type: 18.
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 18. PC before update: 0x009.
+DEBUG(Phase 6): Evaluating Branch Condition (0x3).
+DEBUG(Phase 6): BNZ (on Not Zero) condition: ZF=0 (is_taken=1) based on bc=0x03 (from 0x31 in sample).
+DEBUG(Phase 6): Branch taken to 0x003.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x003
+DEBUG: --- Instruction cycle completed. Final PC: 0x003 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x003
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x003, Instruction=0xb5
+DEBUG(Phase 1): PC incremented to 0x004.
+DEBUG(Phase 1): A_Field=0, B_Field=5. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xb5 (OP_PREFIX=0xb0)
+DEBUG(Phase 2): Matched ADD_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x5.
+DEBUG(Phase 2): AddrModeB=ABS_DATA.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=8, AddrModeB=4
+DEBUG: Instruction decoded as Type=8 (A_Field=0, B_Field=5, AddrModeB=4)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x0a (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=4 (B_Field=0x5).
+DEBUG(Phase 3): Fetched Abs Data 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Data 0x103: 0x05.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x0a, OpB=0x05, Effective Address=0x103
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 8.
+DEBUG(Flags Update): Calculating flags for OpA=0x0a, OpB=0x05, Result=0x0f, IsSub=0
+DEBUG(Flags Update): ZF=0
+DEBUG(Flags Update): NF=0
+DEBUG(Flags Update): CF (Add)=0
+DEBUG(Flags Update): VF (Add)=0 (OpA_sign=0, OpB_sign=0, Result_sign=0)
+DEBUG(Flags Update): Final Flags: CF=0, VF=0, NF=0, ZF=0
+DEBUG(Phase 4): ADD: 0x0a + 0x05 = 0x0f.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=0, VF=0, NF=0, ZF=0
+DEBUG(Phase 5): Entering write_back_result for type 8.
+DEBUG(Phase 5): Wrote ALU result 0x0f to Reg A (Type 8).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 8. PC before update: 0x005.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 8. Final PC: 0x005.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x005
+DEBUG: --- Instruction cycle completed. Final PC: 0x005 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x005
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x005, Instruction=0xaa
+DEBUG(Phase 1): PC incremented to 0x006.
+DEBUG(Phase 1): A_Field=1, B_Field=2. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0xaa (OP_PREFIX=0xa0)
+DEBUG(Phase 2): Matched SUB_OPCODE_PREFIX.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x2.
+DEBUG(Phase 2): AddrModeB=IMMEDIATE.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=10, AddrModeB=2
+DEBUG: Instruction decoded as Type=10 (A_Field=1, B_Field=2, AddrModeB=2)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x01 (from IX).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=2 (B_Field=0x2).
+DEBUG(Phase 3): Fetched Immediate 2nd word: 0x01.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x01, OpB=0x01, Effective Address=0x000
+DEBUG(Phase 4): Entering execute_alu_operation.
+DEBUG(Phase 4): Executing instruction type 10.
+DEBUG(Flags Update): Calculating flags for OpA=0x01, OpB=0x01, Result=0x00, IsSub=1
+DEBUG(Flags Update): ZF=1
+DEBUG(Flags Update): NF=0
+DEBUG(Flags Update): CF (Sub/Borrow)=1 (sum=0x0)
+DEBUG(Flags Update): VF (Sub)=0 (OpA_sign=0, NegB_sign=1, Result_sign=0)
+DEBUG(Flags Update): Final Flags: CF=1, VF=0, NF=0, ZF=1
+DEBUG(Phase 4): SUB: 0x01 - 0x01 = 0x00.
+DEBUG(Phase 4): Exiting execute_alu_operation. Current Flags: CF=1, VF=0, NF=0, ZF=1
+DEBUG(Phase 5): Entering write_back_result for type 10.
+DEBUG(Phase 5): Wrote ALU result 0x00 to Reg A (Type 10).
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 10. PC before update: 0x007.
+DEBUG(Phase 6): PC already updated by fetch for instruction type: 10. Final PC: 0x007.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x007
+DEBUG: --- Instruction cycle completed. Final PC: 0x007 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x007
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x007, Instruction=0x31
+DEBUG(Phase 1): PC incremented to 0x008.
+DEBUG(Phase 1): A_Field=0, B_Field=1. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0x31 (OP_PREFIX=0x30)
+DEBUG(Phase 2): Matched BRANCH_OPCODE_PREFIX. Type=18.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x1.
+DEBUG(Phase 2): Setting AddrModeB=ABS_PROG for Branch/JAL instruction type 18.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=18, AddrModeB=3
+DEBUG: Instruction decoded as Type=18 (A_Field=0, B_Field=1, AddrModeB=3)
+DEBUG: Instruction is not HLT. Continuing...
+DEBUG(Phase 3): Entering fetch_operands.
+DEBUG(Phase 3): Operand A value: 0x0f (from ACC).
+DEBUG(Phase 3): Fetching operand B with AddrModeB=3 (B_Field=0x1).
+DEBUG(Phase 3): Fetched Abs Prog 2nd word: 0x03.
+DEBUG(Phase 3): OpB from Abs Prog 0x003: 0xb5.
+DEBUG(Phase 3): Exiting fetch_operands.
+DEBUG: Operand fetched. OpA=0x0f, OpB=0xb5, Effective Address=0x003
+DEBUG: ALU operation skipped for this instruction type: 18
+DEBUG(Phase 5): Entering write_back_result for type 18.
+DEBUG(Phase 5): No specific write back for instruction type: 18.
+DEBUG(Phase 5): Exiting write_back_result.
+DEBUG: Result write back completed.
+DEBUG(Phase 6): Entering update_program_counter for type 18. PC before update: 0x009.
+DEBUG(Phase 6): Evaluating Branch Condition (0x3).
+DEBUG(Phase 6): BNZ (on Not Zero) condition: ZF=1 (is_taken=0) based on bc=0x03 (from 0x31 in sample).
+DEBUG(Phase 6): Branch NOT taken. PC remains at 0x009.
+DEBUG(Phase 6): Exiting update_program_counter.
+DEBUG: Program Counter updated. Current PC: 0x009
+DEBUG: --- Instruction cycle completed. Final PC: 0x009 ---
+DEBUG: --- Starting new instruction cycle ---
+DEBUG: Initial PC: 0x009
+DEBUG(Phase 1): Entering fetch_instruction.
+DEBUG(Phase 1): Fetched PC=0x009, Instruction=0x0f
+DEBUG(Phase 1): PC incremented to 0x00a.
+DEBUG(Phase 1): A_Field=1, B_Field=7. Exiting fetch_instruction.
+DEBUG(Phase 2): Entering decode_instruction.
+DEBUG(Phase 2): Decoding instruction 0x0f (OP_PREFIX=0x00)
+DEBUG(Phase 2): Matched HLT.
+DEBUG(Phase 2): Determining addressing mode for B_Field 0x7.
+DEBUG(Phase 2): Setting AddrModeB=NONE for instruction type 1.
+DEBUG(Phase 2): Exiting decode_instruction. Final Type=1, AddrModeB=7
+DEBUG: Instruction decoded as Type=1 (A_Field=1, B_Field=7, AddrModeB=7)
+HLT instruction executed. Program Halted.
+Program Halted.
+CPU0,PC=0xa> d
+        acc=0x0f(15,15)    ix=0x00(0,0)   cf=1 vf=0 nf=0 zf=1
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
