@@ -19,7 +19,7 @@ find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 
 ament_auto_add_executable(cpu_simulation_node
-  src/cpu.c
+  src/cpu-remove-comment.c
   src/main.c
 )
 target_include_directories(cpu_simulation_node PRIVATE

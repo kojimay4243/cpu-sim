@@ -1,0 +1,17 @@
+
+CPU0,PC=0x0> s acc 05
+        acc=0x05(5,5)    ix=0x00(0,0)   cf=0 vf=0 nf=0 zf=0
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
+CPU0,PC=0x0> s ix 03
+        acc=0x05(5,5)    ix=0x03(3,3)   cf=0 vf=0 nf=0 zf=0
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
+CPU0,PC=0x0> r src/cpu-sim/test/sample_program.txt
+CPU0,PC=0x0> s pc 0
+        acc=0x05(5,5)    ix=0x03(3,3)   cf=0 vf=0 nf=0 zf=0
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
+CPU0,PC=0x0> c
+HLT instruction executed. Program Halted.
+Program Halted.
+CPU0,PC=0xa> d
+        acc=0x0f(15,15)    ix=0x00(0,0)   cf=1 vf=0 nf=0 zf=1
+        ibuf=0:0x00(0,0)    obuf=0:0x00(0,0)
