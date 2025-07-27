@@ -71,7 +71,9 @@ int step(Cpub *cpub)
    }
 
    // 4. ALU execution (for instructions that need it)
-   if (info.type != INST_ST && info.type != INST_Bbc && info.type != INST_JAL && info.type != INST_JR && info.type != INST_NOP) {
+   if (info.type != INST_LD && info.type != INST_ST && info.type != INST_Bbc && info.type != INST_JAL && info.type != INST_JR && 
+       info.type != INST_NOP && info.type != INST_RCF && info.type != INST_SCF && 
+       info.type != INST_HLT && info.type != INST_IN && info.type != INST_OUT) {
        execute_alu_operation(cpub, &info);
    }
 
@@ -107,14 +109,18 @@ static void decode_instruction(Cpub *cpub, InstructionInfo *info)
             else if (info->instruction_word_1st == 0x0F) { info->type = INST_HLT; }
             else if (info->instruction_word_1st == 0x10) { info->type = INST_OUT; }
             else if (info->instruction_word_1st == 0x1F) { info->type = INST_IN; }
-            else if (info->instruction_word_1st == 0x20) { info->type = INST_RCF; }
-            else if (info->instruction_word_1st == 0x2F) { info->type = INST_SCF; }
             else if (info->instruction_word_1st == 0x0A) {
                 info->type = INST_JAL; info->branch_cond = BRANCH_COND_NONE;
             }
             else if (info->instruction_word_1st == 0x0B) {
                  info->type = INST_JR; info->branch_cond = BRANCH_COND_NONE;
             }
+            else { info->type = INST_UNKNOWN; }
+            break;
+
+        case RCF_SCF_OPCODE_PREFIX:
+            if (info->instruction_word_1st == 0x20) { info->type = INST_RCF; }
+            else if (info->instruction_word_1st == 0x2F) { info->type = INST_SCF; }
             else { info->type = INST_UNKNOWN; }
             break;
 
@@ -321,6 +327,14 @@ static void update_flags_for_arith_logic(Cpub *cpub, Uword old_val_a, Uword old_
 // Phase 5: Write Back Result
 static void write_back_result(Cpub *cpub, InstructionInfo *info) {
    switch (info->type) {
+       case INST_LD:
+           // Load operand B value to register A
+           if (info->result_dest_reg_ptr != NULL) {
+               *(info->result_dest_reg_ptr) = info->operand_b_val;
+           } else {
+               fprintf(stderr, "Error: result_dest_reg_ptr is NULL for LD instruction.\n");
+           }
+           break;
        case INST_ADD:
        case INST_ADC:
        case INST_SUB:
@@ -348,6 +362,14 @@ static void write_back_result(Cpub *cpub, InstructionInfo *info) {
            break;
        case INST_CMP:
            // CMP does not write back to register/memory
+           break;
+       case INST_RCF:
+           // Reset Carry Flag
+           cpub->cf = 0;
+           break;
+       case INST_SCF:
+           // Set Carry Flag
+           cpub->cf = 1;
            break;
        case INST_JAL:
            // Store PC+2 to ACC

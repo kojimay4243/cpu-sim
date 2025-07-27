@@ -1,0 +1,17 @@
+w 170 03
+w 180 56
+w 181 34
+w 182 12
+w 190 BC
+w 191 9A
+w 192 78
+w 1A0 00
+w 1A1 00
+w 1A2 00
+r test/multi_precision_binary.txt
+d
+c
+d
+m 1A0
+m 1A1
+m 1A2
